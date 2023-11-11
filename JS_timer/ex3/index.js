@@ -22,7 +22,17 @@ function setAlarm(timeString) {
       return;
    }
   
-   
+   const now = new Date();
+   const alarmTime = new Date(now.getFullYear(), now.getMonth(), now.getDate(), hours, minutes, seconds);
+  
+   if (alarmTime <= now) {
+      alarmTime.setDate(alarmTime.getDate() + 1);
+   }
+  
+   const delay = alarmTime - now;
+   setTimeout(function() {
+      console.log('Будильник сработал!');
+   }, delay);
 }
 
-setAlarm("13:09:00");
+setAlarm("13:21:00");
