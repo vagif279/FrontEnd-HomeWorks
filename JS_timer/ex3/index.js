@@ -17,6 +17,11 @@ function setAlarm(timeString) {
    const minutes = parseInt(timeParts[1]);
    const seconds = parseInt(timeParts[2]);
   
+   if (hours < 0 || hours > 23 || minutes < 0 || minutes > 59 || seconds < 0 || seconds > 59) {
+      console.error('Время должно быть в формате HH:mm:ss');
+      return;
+   }
+  
    
 }
 
