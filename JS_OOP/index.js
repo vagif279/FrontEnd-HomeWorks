@@ -9,4 +9,8 @@ function showProtoChain(obj) { //функция цепочки прототип�
       console.log(obj);
       obj = Object.getPrototypeOf(obj);
     }
+    process.exit();
 }
+
+const exampleObject = {A: 1, B: 2, C: 3}; 
+showProtoChain(exampleObject); //вызов функции
