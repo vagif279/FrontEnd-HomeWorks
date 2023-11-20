@@ -2,18 +2,32 @@
 
 console.clear();
 
-function MyArray() {
-    
+class MyArray {
+    constructor() {
+        this.length = 0;
+    }
+    shift() {
+        //сдвиг всех элементов влево
+        for (let i = 0; i <= this.length - 1; ++i) {
+            if (i === this.length - 1) {
+                this[i] = this[0];
+            }
+            this[i] = this[i + 1];
+        }
+        return 0;
+    }
+    unshift() {
+        //сдвиг всех элементов вправо
+        //тут я начал с конца чтобы не дойти до отрицательных значений
+        for (let i = this.length - 1; i >= 0; --i) {
+            if (i === 0) {
+                this[i] = this[this.length - 1];
+            }
+            this[i] = this[i - 1];
+        }
+        return 0;
+    }
 }
-
-MyArray.prototype.shift = function() {
-    
-}
-
-MyArray.prototype.unshift = function() {
-
-}
-
 
 const arr = new MyArray(1, 2, 3);
 
