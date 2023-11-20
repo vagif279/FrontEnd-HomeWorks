@@ -3,3 +3,10 @@
     программа завершает свою работу */
 
 console.clear();
+
+function showProtoChain(obj) { //функция цепочки прототипов
+    while (obj !== null) {
+      console.log(obj);
+      obj = Object.getPrototypeOf(obj);
+    }
+}
