@@ -1,0 +1,30 @@
+body {
+	margin: 0;
+	font-family: Arial, sans-serif;
+}
+
+.gallery {
+	text-align: center;
+	margin-top: 20px;
+}
+
+.main-image {
+	width: 60%;
+	max-height: 600px;
+	object-fit: fill;
+}
+
+.thumbnail-container {
+	display: flex;
+	justify-content: center;
+	margin-top: 20px;
+}
+
+.thumbnail {
+	width: 75px;
+	height: 75px;
+	margin: 0 10px;
+	cursor: pointer;
+	border: 2px solid white;
+	transition: border-color 0.3s ease;
+}
