@@ -16,8 +16,11 @@
             <!-- Форма добавления задачи -->
             <form id="addTaskForm">
                 <label for="title">Title:</label>
-                <input type="text" id="title" required>
+
+                <input type="text" pattern="^[a-zA-Zа-яА-Я0-9]{1,15}$" id="title" title="Не соответсвует форме" required>
+                <!-- 1-16 символов. Слово из англ, русс букв или в цифрах (пока что только это) -->
                 <label for="description">Description:</label>
+
                 <textarea id="description" required></textarea>
                 <button type="submit">Add Task</button>
             </form>
