@@ -8,3 +8,21 @@ class Task {
       this.isCompleted = isCompleted;
     }
 }
+  
+// Класс для управления списком задач
+class TaskList {
+    constructor() {
+        this.tasks = [];
+    }
+
+    // Добавление новой задачи
+    addTask(task) {
+        this.tasks.push(task);
+    }
+
+    // Удаление задачи по ID
+    removeTaskById(id) {
+        this.tasks = this.tasks.filter((task) => task.id !== id);
+    }
+
+}
