@@ -16,12 +16,11 @@
             <!-- Форма добавления задачи -->
             <form id="addTaskForm">
                 <label for="title">Title:</label>
-                <input type="text" pattern="^[a-zA-Zа-яА-Я0-9]+(?:\s[a-zA-Zа-яА-ЯеЁ0-9]+){1,15}$" id="title" title="Не соответсвует заданной в условии задания форме" required>
-                <!-- 1-16 символов. Слово из англ, русс букв или в цифрах. 2 или более слов между которыми только 1 пробел, а также нет пробелов в начале и в конце -->
+                <input type="text" pattern="^(?:(?:[a-zA-Z]+|[а-яА-ЯёЁ]+|\d+)\s){1,}(?:[a-zA-Z]+|[а-яА-ЯёЁ]+|\d+)$" id="title" title="Название не соответсвует заданной в условии задания форме" required>
+                <!-- Тут всё условие кроме того что не может состоять только из чисел -->
 
                 <label for="description">Description:</label>
-                <textarea pattern="^[a-zA-Zа-яА-Я0-9]" id="description" title="Не соответсвует заданной в условии задания форме" oninput="validateTextarea()" required></textarea>
-                <!-- Пока что тут просто проверка на то что он не оспадает с input и простая проверка на то что весь текст состоит только из англ ру или цифр-->
+                <textarea pattern="^([a-zA-Z]+|[а-яА-ЯёЁ]+|\d+)(?:\s([a-zA-Z]+|[а-яА-ЯёЁ]+|\d+))*$" id="description" title="Описание не соответсвует заданной в условии задания форме" oninput="validateTextarea()" required></textarea>
 
                 <button type="submit">Add Task</button>
             </form>
