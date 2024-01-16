@@ -84,3 +84,78 @@ class TaskList {
 // const completedTasks = taskList.filterTasksByStatus(true);
 // const incompleteTasks = taskList.filterTasksByStatus(false);
 /* -------------------------------------------------------------------- */
+
+
+
+const addTaskForm = document.getElementById('addTaskForm');
+const taskListContainer = document.getElementById('taskList');
+
+const taskList = new TaskList();
+
+// Функция для обновления отображения списка задач
+function updateTaskList() {
+    taskListContainer.innerHTML = ''; // очищаем текущий список задач
+  
+    // Создание HTML-элемента для каждой задачи (на самом сайте)
+    taskList.tasks.forEach(task => {
+        const taskItem = document.createElement('div');
+        taskItem.className = 'task-item';
+        taskItem.innerHTML = `
+            <input type="checkbox" ${task.isCompleted ? 'checked' : ''} onchange="toggleTaskStatus('${task.id}')">
+            <span>${task.title}</span>
+            <button onclick="editTask('${task.id}')">Edit</button>
+            <button onclick="deleteTask('${task.id}')">Delete</button>
+            `;
+        taskListContainer.appendChild(taskItem);
+    });
+}
+
+// Функция для обработки события отправки формы добавления задачи
+addTaskForm.addEventListener('submit', function (event) {
+    event.preventDefault();
+  
+    // Получение значения из формы
+    const title = document.getElementById('title').value;
+    const description = document.getElementById('description').value;
+  
+    // Создание новой задачи
+    const newTask = new Task(
+        Date.now().toString(),
+        title,
+        description,
+        new Date().toLocaleString(),
+        false,
+    );
+
+    // Добавление задачи в общий список
+    taskList.addTask(newTask);
+
+    // Очистка формы для дальнейшего использования
+    addTaskForm.reset();
+
+    // Обновление отображения списка задач, иначе наша задача не появится
+    updateTaskList(); 
+});
+
+// Функция для изменения статуса выполненности задачи
+function toggleTaskStatus(taskId) {
+    taskList.toggleTaskStatus(taskId);
+    updateTaskList();
+}
+
+// Функция для редактирования задачи
+function editTask(taskId) {
+    const task = taskList.getTaskById(taskId);
+
+    // Проверка, есть ли такая задача
+    if (task) {
+        // !!! Реализовать открытие формы редактирования задачи !!! (пока не готово)
+        console.log('Edit task:', task);
+    }
+}
+
+// Функция для удаления задачи
+function deleteTask(taskId) {
+    taskList.removeTaskById(taskId);
+    updateTaskList();
+}
