@@ -1,3 +1,18 @@
+/* -------------------------------------------------------------------- */
+/* Проверка для textarea чтобы он не совпадал с input */
+function validateTextarea() {
+    const inputText = document.getElementById('title').value;
+    const textareaText = document.getElementById('description').value;
+
+    // Если текст в textarea совпадает с текстом в input, очистить textarea
+    if (textareaText === inputText) {
+        alert('Текст в поле textarea не должен совпадать с текстом в поле input!'); // предупреждение о том что текст не может совпадать
+        document.getElementById('description').value = ''; // очищение поля чтобы user ввёл новый текст
+    }
+}
+/* -------------------------------------------------------------------- */
+
+
 // Класс для представления задачи
 class Task {
     constructor(id, title, description, createdAt, isCompleted = false) {
