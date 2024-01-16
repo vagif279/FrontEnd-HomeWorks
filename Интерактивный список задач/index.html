@@ -17,8 +17,8 @@
             <form id="addTaskForm">
                 <label for="title">Title:</label>
 
-                <input type="text" pattern="^[a-zA-Zа-яА-Я0-9]{1,15}$" id="title" title="Не соответсвует форме" required>
-                <!-- 1-16 символов. Слово из англ, русс букв или в цифрах (пока что только это) -->
+                <input type="text" pattern="^[a-zA-Zа-яА-Я0-9]+(?:\s[a-zA-Zа-яА-ЯеЁ0-9]+){1,15}$" id="title" title="Не соответсвует заданной в условии задания форме" required>
+                <!-- 1-16 символов. Слово из англ, русс букв или в цифрах. А также из 2 или более слов между которыми только 1 пробел. А также нет пробелов в начале и в конце -->
                 <label for="description">Description:</label>
 
                 <textarea id="description" required></textarea>
