@@ -68,6 +68,43 @@ class TaskList {
     sortTasksByDate() {
         this.tasks.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
     }
+
+    // Метод отображения списка задач
+    showTaskList() {
+        console.clear();
+        console.log('===== Список задач =====');
+        if (this.tasks.length === 0) {
+            console.log('Список задач пуст.');
+        } else {this.tasks.forEach((task) => {
+            console.log(`ID: ${task.id}`);
+            console.log(`Название: ${task.title}`);
+            console.log(`Описание: ${task.description}`);
+            console.log(`Дата создания: ${task.creationDate}`);
+            console.log(`Статус выполненности: ${task.completed ? 'Выполнено' : 'Не выполнено'}`);
+            console.log('------------------------');
+            });
+        }
+    }
+
+    // Метод сохранения задач в localStorage
+    saveToLocalStorage() {
+        localStorage.setItem('tasks', JSON.stringify(this.tasks));
+    }
+    
+    // Метод загрузки задач из localStorage
+    loadFromLocalStorage() {
+        const storedTasks = localStorage.getItem('tasks');
+        if (storedTasks) {
+            this.tasks = JSON.parse(storedTasks);
+        }
+    }
+
+    // Метод отображения формы добавления задачи
+    showAddTaskForm() {
+        const title = prompt('Введите название задачи:');
+        const description = prompt('Введите описание задачи:');
+        this.addTask(title, description);
+    }
 }
 
 /* -------------------------------------------------------------------- */
@@ -106,6 +143,8 @@ const addTaskForm = document.getElementById('addTaskForm');
 const taskListContainer = document.getElementById('taskList');
 
 const taskList = new TaskList();
+taskList.loadFromLocalStorage();
+taskList.showTaskList();
 
 // Функция для обновления отображения списка задач
 function updateTaskList() {
@@ -162,9 +201,18 @@ function toggleTaskStatus(taskId) {
 function editTask(taskId) {
     const task = taskList.getTaskById(taskId);
 
-    // Проверка, есть ли такая задача
+    // Проверка, есть ли такая задача, если есть то попросить новые данные
     if (task) {
-        // !!! Реализовать открытие формы редактирования задачи !!! (пока не готово)
+        const newTitle = prompt('Введите новое название задачи:');
+        const newDescription = prompt('Введите новое описание задачи:');
+        const newEditedTask = new Task(
+            Date.now().toString(),
+            newTitle,
+            newDescription,
+            new Date().toLocaleString(),
+            false,
+        )
+        taskList.editTask(taskIdToEdit, newEditedTask);
         console.log('Edit task:', task);
     }
 }
@@ -173,4 +221,14 @@ function editTask(taskId) {
 function deleteTask(taskId) {
     taskList.removeTaskById(taskId);
     updateTaskList();
+}
+
+
+// Пример работы с пользовательским интерфейсом
+
+// Функция для отображения списка задач в консоли
+function displayTasks(tasks) {
+    tasks.forEach((task) => {
+      console.log(`ID: ${task.id}, Название: ${task.title}, Статус: ${task.isCompleted ? 'Выполнено' : 'Не выполнено'}`);
+    });
 }
