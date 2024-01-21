@@ -1,10 +1,32 @@
+/*  Даны два массива. Один массив содержит в себе названия глав, а второй массив соответсвующие 
+номера страниц. Количество элементов в обоих массивах одинаково. Нужно вывести в консоль попарно 
+в виде оглавления все названия и соответсвующие им страницы. Минимальная длина всей страницы 20 
+символов. Если сумма длин номера стрницы и названия главы превышает 20 символов, то между ними 
+должна быть 1 точка гарантированно. Например:
+
+const titles = ['Заголовок 1', 'Очень длинный заголовок во всей книжке', 'Заголовок 2'];
+const pages = [10, 20, 123456789012345];
+
+// algorithm
+
+// Expected output:
+
+// Заголовок 1.......10
+// Очень длинный заголовок во всей книжке.20
+// Заголовок 2.123456789012345
+*/
 console.clear();
 
 const titles = ['Заголовок 1', 'Очень длинный заголовок во всей книжке', 'Заголовок 2'];
 const pages = [10, 20, 123456789012345];
 
 for (let i = 0; i < titles.length; i++) {
-    const stringPages = pages[i].toString();
-    const dots = 20 - titles[i].length - stringPages.length;
-    console.log(titles[i].padEnd(dots, '*') + stringPages);
+    let titlesLength = titles[i].split('').length;
+    let pagesLength = pages[i].toString().split('').length;
+    let totalLength = titlesLength + pagesLength;
+    let dotsAmount = 1;
+    if(totalLength < 20){
+        dotsAmount = 20 - totalLength;
+    }
+    
 }
